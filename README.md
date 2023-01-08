@@ -3,4 +3,4 @@ Now it's work this docker
 
 TODO: make more easier a web server change for personnal use
 
-https://hub.docker.com/repository/docker/todry542/mhwsync/general
+https://hub.docker.com/r/todry542/mhwsync
