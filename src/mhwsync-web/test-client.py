@@ -16,7 +16,7 @@ class Response:
 
 
 def get(url):
-    r = urllib.request.urlopen("http://mhwsync.herokuapp.com/session/testsession" + url).read()
+    r = urllib.request.urlopen("http://mhwsync.toluris.ovh/session/testsession" + url).read()
     r = re.search("'.*'", str(r)).group()
     r = r.strip("\'\\\nn")
     r_json = json.loads(r)
@@ -30,13 +30,13 @@ async def main():
         for i in range(3):
             print("monster " + str(i) + " parts: ")
             for j in range(5):
-                result = get("/monster/" + str(i) + "/part/" + str(j) + "/hp")
+                result = get("/monster/" + str(i) + "/part/" + str(j) + "/current_hp")
                 assert(result.status == 0)
                 print(result.value + " ")
             print("\n")
             print("monster " + str(i) + " ailments: ")
             for j in range(5):
-                result = get("/monster/" + str(i) + "/ailment/" + str(j) + "/buildup")
+                result = get("/monster/" + str(i) + "/ailment/" + str(j) + "/current_buildup")
                 assert (result.status == 0)
                 print(result.value + " ")
             print("\n")

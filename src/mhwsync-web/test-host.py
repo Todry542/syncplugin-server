@@ -16,7 +16,7 @@ class Response:
 
 
 def get(url):
-    r = urllib.request.urlopen("http://mhwsync.herokuapp.com/session/testsession" + url).read()
+    r = urllib.request.urlopen("http://mhwsync.toluris.ovh/session/testsession" + url).read()
     r = re.search("'.*'", str(r)).group()
     r = r.strip("\'\\\nn")
     r_json = json.loads(r)
@@ -47,12 +47,12 @@ async def main():
                 if part_hp[i][j] <= part_hp_modifier[i]:
                     part_hp[i][j] = 9999
                 part_hp[i][j] -= part_hp_modifier[i]
-                assert(get("/monster/" + str(i) + "/part/" + str(j) + "/hp/" + str(part_hp[i][j])).status == 0)
+                assert(get("/monster/" + str(i) + "/part/" + str(j) + "/current_hp/" + str(part_hp[i][j])).status == 0)
 
         for i in range(len(ailment_buildup)):
             for j in range(len(ailment_buildup[i])):
                 ailment_buildup[i][j] += ailment_buildup_modifier[i]
-                assert(get("/monster/" + str(i) + "/ailment/" + str(j) + "/buildup/" + str(ailment_buildup[i][j])).status == 0)
+                assert(get("/monster/" + str(i) + "/ailment/" + str(j) + "/current_buildup/" + str(ailment_buildup[i][j])).status == 0)
 
         await asyncio.sleep(1)
 
